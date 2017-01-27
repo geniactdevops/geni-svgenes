@@ -18,7 +18,7 @@ Juwelier::Tasks.new do |gem|
   gem.homepage = "http://github.com/southpawlife/geni-svgenes"
   gem.license = "MIT"
   gem.summary = "Genome graphing library for geni-act.org"
-  gem.description = "Modified version of the bio-svgenes gem, for use in the geni-act.org education website."
+  gem.description = "Modified version of the bio-svgenes gem, for use in https://geni-act.org education website."
   gem.email = "kbw@spu.edu"
   gem.authors = ["Kristopher Williams"]
 
