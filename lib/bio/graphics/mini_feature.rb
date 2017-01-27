@@ -1,4 +1,4 @@
-module Geniact
+module Bio
   class Graphics
     
     ##

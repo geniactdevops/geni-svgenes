@@ -11,4 +11,6 @@ group :development do
   gem "bundler", "~> 1.0"
   gem "juwelier", "~> 2.1.0"
   gem "simplecov", ">= 0"
+  gem "bio", ">= 1.4.2"
+  gem "json", ">=1.7"
 end

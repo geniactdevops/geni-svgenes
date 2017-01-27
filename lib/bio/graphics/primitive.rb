@@ -1,4 +1,4 @@
-module Geniact
+module Bio
   class Graphics
 
 #The Bio::Graphics::Primitive class is used to describe simple shapes. It is basically a simple data container that

@@ -1,4 +1,4 @@
-module Geniact
+module Bio
   class Graphics
     
   #The Bio::Graphics::Track object acts as a container for Bio::Graphics::MiniFeature objects. The Bio::Graphics::Track takes style information on instantiation.

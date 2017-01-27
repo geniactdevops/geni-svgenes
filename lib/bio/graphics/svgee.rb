@@ -1,4 +1,4 @@
-module Geniact
+module Bio
   class Graphics
 
     #The Bio::Graphics::SVGEE class takes argument information in a hash and creates SVG Markup tags, which it will draw

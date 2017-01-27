@@ -1,4 +1,4 @@
-module Geniact
+module Bio
   class Graphics
 
     ##
@@ -7,6 +7,7 @@ module Geniact
     #and all the tracks along with their features. The scale is calculated will start at the genomic co-ordinates of the start
     #of the first feature and stop at the end of the last feature)
     class Page
+
       #Creates a new Page object.
       #
       #== args
@@ -25,15 +26,12 @@ module Geniact
         @num_intervals = args[:number_of_intervals]
         @size_intervals = args[:size_of_intervals]
         @track_top = 30
-
-        def @svg.update_height(height)
-          @height = height
-        end
-
-        #def @svg.update_width(width)
-        #  @width = width
-        #end
       end
+
+      def @svg.update_height(height)
+        @height = height
+      end
+
 
       #Takes a custom-written json file and uses it to generate an SVG document based on the information in that page.
       #* :json a JSON file describing the parameters and files needed to build an SVG document
@@ -114,7 +112,7 @@ module Geniact
         a = []
         File.open(gff_file).each do |line|
           next if line =~ /^#/
-          a << Geniact::GFF::GFF3::Record.new(line)
+          a << Bio::GFF::GFF3::Record.new(line)
         end
         a
       end
@@ -123,84 +121,84 @@ module Geniact
       #
       #==args
       #
-      #* :glyph = one of Bio::Graphics::Glyphs#glyphs currently 
+      #* :glyph = one of Bio::Graphics::Glyphs#glyphs currently
       # [:generic, :directed, :transcript, :scale, :label, :histogram, :circle, :down_triangle, :up_triangle, :span]
       #* :stroke_color =  the outline colour of the glyphs in the track (default = "black"), can be any SVG colour eg rgb(256,0,0) or #FF0000
-      #* :fill_color = the fill colour of the glyphs in the track (default = 'red'), can be any SVG colour eg rgb(256,0,0) or #FF0000, or one of the built in gradient types Bio::Graphics::Glyph#gradients 
+      #* :fill_color = the fill colour of the glyphs in the track (default = 'red'), can be any SVG colour eg rgb(256,0,0) or #FF0000, or one of the built in gradient types Bio::Graphics::Glyph#gradients
       # [:red_white_h, :green_white_h, :blue_white_h, :yellow_white_h, :red_white_radial, :green_white_radial, :blue_white_radial, :yellow_white_radial ]
       #or a custom definition of a gradient
-      # {:type => :radial, 
-      # :id => :custom, 
-      # :cx => 5, 
-      # :cy => 5, 
-      # :r => 50, 
-      # :fx => 50, 
-      # :fy => 50, 
+      # {:type => :radial,
+      # :id => :custom,
+      # :cx => 5,
+      # :cy => 5,
+      # :r => 50,
+      # :fx => 50,
+      # :fy => 50,
       #   :stops => [ {
-      #        :offset => 0, 
-      #        :color => 'rgb(255,255,255)', 
+      #        :offset => 0,
+      #        :color => 'rgb(255,255,255)',
       #        :opacity => 0
       #        },  {
-      #        :offset => 100, 
-      #        :color => 'rgb(0,127,200)', 
+      #        :offset => 100,
+      #        :color => 'rgb(0,127,200)',
       #        :opacity => 1
       #        }, ]
-      # } 
+      # }
       #* :track_height = minimum height for the track, will be modified automatically if more space is needed e.g for overlapping features (default = auto),
       #* :name = a displayed name for the track (default = 'feature_track')
-      #* :label = display the name given to the track (default = true), 
+      #* :label = display the name given to the track (default = true),
       #* :stroke_width = width in pixels of the outline of the glyphs (default=1)
       #* :x_round = x radius of the ellipse used to round off the corners of rectangles (default = 1)
       #* :y_round = y radius of the ellipse used to round off the corners of rectangles (default = 1)
       #:utr_fill_color = the fill colour of the utr part of the glyph (default = 'black'), can be any SVG colour eg rgb(256,0,0) or #FF0000, or one of the built in gradient types Bio::Graphics::Glyph#gradients
       # [:red_white_h, :green_white_h, :blue_white_h, :yellow_white_h, :red_white_radial, :green_white_radial, :blue_white_radial, :yellow_white_radial ]
       #or a custom definition of a gradient
-      # {:type => :radial, 
-      # :id => :custom, 
-      # :cx => 5, 
-      # :cy => 5, 
-      # :r => 50, 
-      # :fx => 50, 
-      # :fy => 50, 
+      # {:type => :radial,
+      # :id => :custom,
+      # :cx => 5,
+      # :cy => 5,
+      # :r => 50,
+      # :fx => 50,
+      # :fy => 50,
       #   :stops => [ {
-      #        :offset => 0, 
-      #        :color => 'rgb(255,255,255)', 
+      #        :offset => 0,
+      #        :color => 'rgb(255,255,255)',
       #        :opacity => 0
       #        },  {
-      #        :offset => 100, 
-      #        :color => 'rgb(0,127,200)', 
+      #        :offset => 100,
+      #        :color => 'rgb(0,127,200)',
       #        :opacity => 1
       #        }, ]
       # }
       #* :utr_stroke = the outline colour of the utr part of the glyph (default = "black"), can be any SVG colour eg rgb(256,0,0) or #FF0000
       #* :utr_stroke_width = The width of the outline stroke for the utr part of the glyph (default = 1)
-      #* :exon_fill_color = the fill colour of the utr part of the glyph (default = 'red'), can be any SVG colour eg rgb(256,0,0) or #FF0000, or one of the built in gradient types Bio::Graphics::Glyph#gradients or a custom definition of a gradient 
+      #* :exon_fill_color = the fill colour of the utr part of the glyph (default = 'red'), can be any SVG colour eg rgb(256,0,0) or #FF0000, or one of the built in gradient types Bio::Graphics::Glyph#gradients or a custom definition of a gradient
       # [:red_white_h, :green_white_h, :blue_white_h, :yellow_white_h, :red_white_radial, :green_white_radial, :blue_white_radial, :yellow_white_radial ]
       #or a custom definition of a gradient
-      # {:type => :radial, 
-      # :id => :custom, 
-      # :cx => 5, 
-      # :cy => 5, 
-      # :r => 50, 
-      # :fx => 50, 
-      # :fy => 50, 
+      # {:type => :radial,
+      # :id => :custom,
+      # :cx => 5,
+      # :cy => 5,
+      # :r => 50,
+      # :fx => 50,
+      # :fy => 50,
       #   :stops => [ {
-      #        :offset => 0, 
-      #        :color => 'rgb(255,255,255)', 
+      #        :offset => 0,
+      #        :color => 'rgb(255,255,255)',
       #        :opacity => 0
       #        },  {
-      #        :offset => 100, 
-      #        :color => 'rgb(0,127,200)', 
+      #        :offset => 100,
+      #        :color => 'rgb(0,127,200)',
       #        :opacity => 1
       #        }, ]
-      # 
+      #
       #* :exon_stroke = the outline colour of the exon part of the glyph (default = "black") can be any SVG colour eg rgb(256,0,0) or #FF0000
       #* :exon_stroke_width = The width of the outline stroke for the exon part of the glyph (default = 1)
       #* :line_color = the colour for the line part that joins the blocks (default = 'black') can be any SVG colour eg rgb(256,0,0) or #FF0000
       #* :line_width = the width ffor the line part that joins the blocks (default = 1)
-      #* :exon_style = an arbitrary SVG compliant style string eg "fill-opacity:0.4;" 
-      #* :utr_style = an arbitrary SVG compliant style string eg "fill-opacity:0.4;" 
-      #* :line_style = an arbitrary SVG compliant style string eg "fill-opacity:0.4;" 
+      #* :exon_style = an arbitrary SVG compliant style string eg "fill-opacity:0.4;"
+      #* :utr_style = an arbitrary SVG compliant style string eg "fill-opacity:0.4;"
+      #* :line_style = an arbitrary SVG compliant style string eg "fill-opacity:0.4;"
       #* :gap_marker = style of the line between blocks - either angled or straight
       #=== returns
       # a new Bio::Graphics::Track object

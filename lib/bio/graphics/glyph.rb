@@ -1,4 +1,4 @@
-module Geniact
+module Bio
   class Graphics
 
     #A glyph is a particular shape that represents a genomic feature. Bio::Graphics::Glyph objects represent glyphs. Bio::Graphics::Glyphs are created internally according to
