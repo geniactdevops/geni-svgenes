@@ -17,8 +17,8 @@ Juwelier::Tasks.new do |gem|
   gem.name = "geni-svgenes"
   gem.homepage = "http://github.com/southpawlife/geni-svgenes"
   gem.license = "MIT"
-  gem.summary = %Q{TODO: one-line summary of your gem}
-  gem.description = %Q{TODO: longer description of your gem}
+  gem.summary = "Genome graphing library for geni-act.org"
+  gem.description = "Modified version of the bio-svgenes gem, for use in the geni-act.org education website."
   gem.email = "kbw@spu.edu"
   gem.authors = ["Kristopher Williams"]
 
