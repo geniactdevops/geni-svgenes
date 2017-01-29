@@ -1,6 +1,5 @@
-module Bio
+module Geniact
   class Graphics
-
     ##
     #The Bio::Graphics::Page class represents the page of the final rendered SVG and is the top level container into which Bio::Graphics::Tracks are added.
     #It will contain a scale
@@ -26,10 +25,6 @@ module Bio
         @num_intervals = args[:number_of_intervals]
         @size_intervals = args[:size_of_intervals]
         @track_top = 30
-      end
-
-      def @svg.update_height(height)
-        @height = height
       end
 
 

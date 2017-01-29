@@ -1,4 +1,4 @@
-module Bio
+module Geniact
   class Graphics
 
     #The Bio::Graphics::SVGEE class takes argument information in a hash and creates SVG Markup tags, which it will draw
@@ -18,6 +18,10 @@ module Bio
         @primitives = []
         @defs = []
         @supported_primitives = [:circle, :rectangle, :ellipse, :line, :polyline, :text]
+      end
+
+      def update_height(height)
+        @height = height
       end
 
       #Produces the opening text for an svg file
@@ -45,7 +49,7 @@ module Bio
         else
           add self.send("#{primitive}_tag", args)
         end
-        return Bio::Graphics::Primitive.new(primitive, args)
+        return Geniact::Graphics::Primitive.new(primitive, args)
       end
 
       def link_and_tag(primitive, args)

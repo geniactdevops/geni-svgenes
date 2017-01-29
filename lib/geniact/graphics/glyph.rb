@@ -1,4 +1,4 @@
-module Bio
+module Geniact
   class Graphics
 
     #A glyph is a particular shape that represents a genomic feature. Bio::Graphics::Glyph objects represent glyphs. Bio::Graphics::Glyphs are created internally according to
@@ -65,7 +65,7 @@ module Bio
             :x_round => 1,
             :y_round => 1,
             :style => "fill-opacity:0.4;"}.merge!(args)
-        [Bio::Graphics::Primitive.new(:rectangle, args)]
+        [Geniact::Graphics::Primitive.new(:rectangle, args)]
       end
 
       #A circular glyph centered on the start of the feature it represents
@@ -110,7 +110,7 @@ module Bio
         args[:x_center] = args[:x]
         args[:y_center] = args[:y]
         [:x, :y].each { |e| args.delete(e) }
-        [Bio::Graphics::Primitive.new(:circle, args)]
+        [Geniact::Graphics::Primitive.new(:circle, args)]
       end
 
       #A polygon glyph with a point on the end that represents the features strand and direction
@@ -163,7 +163,7 @@ module Bio
           args[:points] = "#{args[:x]},#{args[:y]} #{args[:x] + args[:width] - (args[:height] * 0.2)},#{args[:y]} #{args[:x] + args[:width]},#{args[:y] + (args[:height]/2) } #{args[:x] + args[:width] - (args[:height] * 0.2)},#{args[:y] + args[:height]} #{args[:x]},#{args[:y] + args[:height]}"
 
         end
-        [Bio::Graphics::Primitive.new(:polygon, args)]
+        [Geniact::Graphics::Primitive.new(:polygon, args)]
       end
 
       #A downward-pointing triangle glyph
@@ -207,7 +207,7 @@ module Bio
             :style => "fill-opacity:1;"}.merge!(args)
 
         args[:points] = "#{args[:x]},#{args[:y]} #{args[:x] + args[:width]},#{args[:y]} #{ args[:x] + (args[:width]/2) },#{(args[:y] + args[:height]) }"
-        [Bio::Graphics::Primitive.new(:polygon, args)]
+        [Geniact::Graphics::Primitive.new(:polygon, args)]
       end
 
       #An upward-pointing triangle glyph
@@ -250,7 +250,7 @@ module Bio
             :stroke_width => 1,
             :style => "fill-opacity:1;"}.merge!(args)
         args[:points] = "#{args[:x]},#{args[:y] + args[:height]} #{args[:x] + args[:width]},#{args[:y] + args[:height]} #{ args[:x] + (args[:width]/2) },#{args[:y] }"
-        [Bio::Graphics::Primitive.new(:polygon, args)]
+        [Geniact::Graphics::Primitive.new(:polygon, args)]
       end
 
       #A line (span) glyph
@@ -298,7 +298,7 @@ module Bio
         args[:x2] = args[:x] + args[:width]
         args[:y1] = args[:y]
         args[:y2] = args[:y]
-        [Bio::Graphics::Primitive.new(:line, args)]
+        [Geniact::Graphics::Primitive.new(:line, args)]
       end
 
       #Creates a transcript glyph, which is a composite glyph containing generic glyphs for the exons/utrs and a directed glyph
@@ -396,7 +396,7 @@ module Bio
                                       :style => args[:utr_style])
           ##draw the other(s!)
           args[:utrs].each do |utr|
-            composite << Bio::Graphics::Primitive.new(:rectangle, {
+            composite << Geniact::Graphics::Primitive.new(:rectangle, {
                 :x => utr.first,
                 :width => utr.last,
                 :y => args[:y],
@@ -421,7 +421,7 @@ module Bio
         end
         #draw any remaining exons
         args[:exons].each do |exon|
-          composite << Bio::Graphics::Primitive.new(:rectangle, {
+          composite << Geniact::Graphics::Primitive.new(:rectangle, {
               :x => exon[0],
               :width => exon[1],
               :y => args[:y],
@@ -435,7 +435,7 @@ module Bio
           if args[:gap_marker] == "angled"
             args[:block_gaps].each do |gap|
               points = "#{gap.first},#{args[:y] + (args[:height]/2) } #{gap.first + (gap.last/2)},#{args[:y]} #{gap.first + gap.last},#{args[:y] + (args[:height]/2)}"
-              composite << Bio::Graphics::Primitive.new(:polyline, {
+              composite << Geniact::Graphics::Primitive.new(:polyline, {
                   :points => points,
                   :stroke => args[:line_color],
                   :stroke_width => args[:line_width],
@@ -444,7 +444,7 @@ module Bio
             end
           else
             #add line
-            composite << Bio::Graphics::Primitive.new(:line, {
+            composite << Geniact::Graphics::Primitive.new(:line, {
                 :x1 => args[:x],
                 :x2 => "#{args[:x] + args[:width]}",
                 :y1 => args[:y] + (args[:height]/2),
@@ -485,7 +485,7 @@ module Bio
         end
 
 
-        a = [Bio::Graphics::Primitive.new(:line,
+        a = [Geniact::Graphics::Primitive.new(:line,
                                           :stroke => 'black',
                                           :stroke_width => 1,
                                           :x1 => 1, :x2 => args[:page_width], # * 1.1,
@@ -498,7 +498,7 @@ module Bio
         px_per_nt = args[:page_width].to_f / full_dist.to_f
         marks.each do |mark|
           x = (mark.to_f - first_mark).to_f * px_per_nt
-          a << Bio::Graphics::Primitive.new(:rectangle,
+          a << Geniact::Graphics::Primitive.new(:rectangle,
                                             :x => x,
                                             :y => 15,
                                             :stroke => 'black',
@@ -506,7 +506,7 @@ module Bio
                                             :width => 1,
                                             :height => 10)
 
-          a << Bio::Graphics::Primitive.new(:text,
+          a << Geniact::Graphics::Primitive.new(:text,
                                             :x => x,
                                             :y => 15, :fill => 'black',
                                             :text => (mark/1000).to_s + 'k',
@@ -515,7 +515,7 @@ module Bio
 
         mini_marks.each do |mark|
           x = (mark.to_f - first_mark).to_f * px_per_nt
-          a << Bio::Graphics::Primitive.new(:rectangle,
+          a << Geniact::Graphics::Primitive.new(:rectangle,
                                             :x => x,
                                             :y => 20,
                                             :stroke => 'black',
@@ -523,7 +523,7 @@ module Bio
                                             :width => 1,
                                             :height => 5)
 
-          a << Bio::Graphics::Primitive.new(:rectangle,
+          a << Geniact::Graphics::Primitive.new(:rectangle,
                                             :x => x,
                                             :y => 25,
                                             :stroke => '#E8FFFF',
@@ -544,7 +544,7 @@ module Bio
       #* :x = the co-ordinates of the Glyph for the x-axis
       #* :y = the co-ordinates of the Glyph for the y-axis
       def self.label(args)
-        [Bio::Graphics::Primitive.new(:text,
+        [Geniact::Graphics::Primitive.new(:text,
                                       :text => args[:text],
                                       :x => args[:x],
                                       :y => args[:y],
