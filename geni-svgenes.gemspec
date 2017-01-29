@@ -11,7 +11,7 @@ Gem::Specification.new do |s|
   s.required_rubygems_version = Gem::Requirement.new(">= 0".freeze) if s.respond_to? :required_rubygems_version=
   s.require_paths = ["lib".freeze]
   s.authors = ["Kristopher Williams".freeze]
-  s.date = "2017-01-27"
+  s.date = "2017-01-29"
   s.description = "Modified version of the bio-svgenes gem, for use in https://geni-act.org education website.".freeze
   s.email = "kbw@spu.edu".freeze
   s.extra_rdoc_files = [
@@ -27,13 +27,13 @@ Gem::Specification.new do |s|
     "Rakefile",
     "VERSION",
     "geni-svgenes.gemspec",
-    "lib/bio/graphics/glyph.rb",
-    "lib/bio/graphics/mini_feature.rb",
-    "lib/bio/graphics/page.rb",
-    "lib/bio/graphics/primitive.rb",
-    "lib/bio/graphics/svgee.rb",
-    "lib/bio/graphics/track.rb",
-    "lib/geni-svgenes.rb"
+    "lib/geni-svgenes.rb",
+    "lib/geniact/graphics/glyph.rb",
+    "lib/geniact/graphics/mini_feature.rb",
+    "lib/geniact/graphics/page.rb",
+    "lib/geniact/graphics/primitive.rb",
+    "lib/geniact/graphics/svgee.rb",
+    "lib/geniact/graphics/track.rb"
   ]
   s.homepage = "http://github.com/southpawlife/geni-svgenes".freeze
   s.licenses = ["MIT".freeze]
