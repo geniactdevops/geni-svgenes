@@ -1,6 +1,6 @@
 # geni-svgenes
 
-Adaptation of the bio-svgenes gem for use in geni-act.org Edit
+Fork of the [bio-svgenes](https://github.com/danmaclean/bioruby-svgenes) gem for use in geni-act.org
 
 ## Copyright
 
